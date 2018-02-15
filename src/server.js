@@ -22,7 +22,6 @@ app.get('/*', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, '../../react_redux/build/index.html'));
 // });
 app.set('port', 8000);
-app.set('port', 8000);
 
 const models = require('./models');
 

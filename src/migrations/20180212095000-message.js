@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('messages', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Messages', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -12,13 +12,17 @@ module.exports = {
     content: {
       type: Sequelize.TEXT
     },
+    status: {
+      type: Sequelize.STRING,
+      defaultValue: 'new'
+    },
     userId: {
       type: Sequelize.INTEGER,
-      references: { model: 'users', key: 'id' }
+      references: { model: 'Users', key: 'id' }
     },
     recipientId: {
       type: Sequelize.INTEGER,
-      references: { model: 'users', key: 'id' }
+      references: { model: 'Users', key: 'id' }
     },
     createdAt: {
       allowNull: false,
@@ -35,7 +39,7 @@ module.exports = {
     .catch((err) => {
       console.log(err);
     }),
-  down: queryInterface => queryInterface.dropTable('messages')
+  down: queryInterface => queryInterface.dropTable('Messages')
     .catch((err) => {
       console.log(err);
     })
