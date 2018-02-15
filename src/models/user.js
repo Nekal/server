@@ -1,43 +1,49 @@
-const Message = require('../models/').messages;
-// const Message = require('../models/message');
-
 module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define('User', {
-    id: {
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER
+      id: {
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      username: {
+        type: Sequelize.STRING,
+        unique: true
+      },
+      email: {
+        type: Sequelize.STRING,
+        unique: true
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      role: {
+        type: Sequelize.STRING
+      }
     },
-    username: {
-      type: Sequelize.STRING,
-      unique: true
-    },
-    email: {
-      type: Sequelize.STRING,
-      unique: true
-    },
-    password: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    role: {
-      type: Sequelize.STRING
-    }
-  },
-  // {
-  // //   tableName: 'users',
-  // //   underscored: true,
-  // //   timestamps: true,
-  //   classMethods: {
-  //     associate: function(models) {
-  //       User.hasMany(models.Message)
-  //     }
-  //   },
-  // }
+    // {
+    //   classMethods: {
+    //     associate(models) {
+    //       console.log('safsda');
+    //       models.User.hasMany(models.Message, {
+    //         foreignKey: 'userId'
+    //       });
+    //
+    //       models.User.hasMany(models.Message, {
+    //         foreignKey: 'recipientId'
+    //       });
+    //     }
+    //   },
+    // }
   );
-  // User.hasMany (Message, { foreignKey: 'primaryMessagesId', as: 'primaryMessages'  });
-  // User.hasMany (Message, { foreignKey: 'secondaryMessagesId', as: 'secondaryMessages'  });
-  // User.hasMany(Message)
-  // User.hasMany('messages')
+  User.associate = function (models) {
+    models.User.hasMany(models.Message, {
+      foreignKey: 'userId'
+    });
+
+    models.User.hasMany(models.Message, {
+      foreignKey: 'recipientId'
+    });
+  };
   return User;
 };

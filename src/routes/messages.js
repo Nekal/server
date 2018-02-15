@@ -24,7 +24,7 @@ router.get('/messages', (req, res) => {
           .then(result => {
             res.send(result)
           })
-          .catch(error => res.send(error));
+          .catch(error => console.log(error));
       })
       .catch(error => res.status(401).send(error));
   });

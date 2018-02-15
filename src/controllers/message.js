@@ -1,20 +1,20 @@
-const Message = require('../models/').Message;
-const User = require('../models/').User;
+const models = require('../models');
+const Message = models.Message;
+const User = models.User;
+
 
 module.exports = {
   findMessages(userId) {
     console.log('hi');
-    return (
-      Message.findAll({
+    return models.Message.findAll({
         order: [['id', 'DESC']],
-        // include: [
-        //   { model:  User}
-        // ],
+        include: [
+          { model:  models.User }
+        ],
         where: {
           recipientId: userId,
         },
       })
-    );
   },
   findNewMessages(recipientId, status) {
     return (
