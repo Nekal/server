@@ -1,6 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
   const Message = sequelize.define('Message', {
-      title: Sequelize.STRING,
       content: Sequelize.TEXT,
       status: Sequelize.STRING,
       userId: { type: Sequelize.INTEGER, validate: { notEmpty: true }},

@@ -16,6 +16,20 @@ router.put('/message', (req, res) => {
     .catch(error => res.send(error));
 });
 
+router.get('/chatmessage', (req, res) => {
+  jwt.verify(req.query.token, 'secret', (err, decoded) => {
+    user.checkUser(decoded.id, decoded.role, req.query.userId)
+      .then(() => {
+        messages.findChatMessages(req.query.userId, req.query.recipientId)
+          .then(result => {
+            res.send(result);
+          })
+          .catch(error => console.log(error));
+      })
+      .catch(error => res.status(401).send(error));
+  });
+});
+
 router.get('/messages', (req, res) => {
   jwt.verify(req.query.token, 'secret', (err, decoded) => {
     user.checkUser(decoded.id, decoded.role, req.query.userId)
@@ -40,7 +54,7 @@ router.post('/send', (req, res) => {
   jwt.verify(req.body.token, 'secret', (err, decoded) => {
     user.checkUser(decoded.id, decoded.role, req.body.userId)
       .then(() => {
-        messages.create(req.body.title, req.body.content, req.body.userId, req.body.recipientId)
+        messages.create(req.body.content, req.body.userId, req.body.recipientId)
           .then(newMessage => res.send(newMessage))
           .catch(error => res.send(error));
       })

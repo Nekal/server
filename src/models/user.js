@@ -21,20 +21,6 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       }
     },
-    // {
-    //   classMethods: {
-    //     associate(models) {
-    //       console.log('safsda');
-    //       models.User.hasMany(models.Message, {
-    //         foreignKey: 'userId'
-    //       });
-    //
-    //       models.User.hasMany(models.Message, {
-    //         foreignKey: 'recipientId'
-    //       });
-    //     }
-    //   },
-    // }
   );
   User.associate = function (models) {
     models.User.hasMany(models.Message, {
