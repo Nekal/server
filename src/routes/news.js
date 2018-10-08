@@ -45,7 +45,6 @@ router.get('/allnews', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
-  console.log(req.body)
   jwt.verify(req.body.token, 'secret', (err, decoded) => {
     user.checkUser(decoded.id, decoded.role, req.body.userId)
       .then(() => {

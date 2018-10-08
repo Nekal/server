@@ -9,16 +9,19 @@ module.exports = {
       })
     );
   },
+
   findById(id) {
     return (
       News.findById(id)
     );
   },
+
   create(title, description, userId) {
     return (
-      News.create({ title, description, userId })
+      News.create({title, description, userId})
     );
   },
+
   destroy(id) {
     return (
       News.destroy({
@@ -28,9 +31,10 @@ module.exports = {
       })
     );
   },
+
   update(id, title, description) {
     return (
-      News.update({ title, description }, {
+      News.update({title, description}, {
         title,
         description,
         where: {

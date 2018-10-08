@@ -11,11 +11,13 @@ module.exports = {
       })
     );
   },
+
   findById(id) {
     return (
       User.findById(id)
     );
   },
+
   create(username, email, password, role) {
     return (
       User.create({
@@ -28,7 +30,7 @@ module.exports = {
     if (Number(id) === Number(userId)) {
       return (
         User.findOne({
-          where: { id }
+          where: {id}
         })
       );
     }

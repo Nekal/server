@@ -17,10 +17,7 @@ app.use(express.static(path.resolve(__dirname, '../../angular-news/dist/')));
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../../angular-news/dist/index.html'));
 });
-// app.use(express.static(path.resolve(__dirname, '../../react_redux/build/')));
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '../../react_redux/build/index.html'));
-// });
+
 app.set('port', 8000);
 
 const models = require('./models');
